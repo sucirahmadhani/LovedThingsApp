@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "826765665889",
+    "project_id": "lovedthingsapp-5cf52",
+    "storage_bucket": "lovedthingsapp-5cf52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826765665889:android:70eefc6b2058a3f7c6ec20",
+        "android_client_info": {
+          "package_name": "com.example.lovedthingsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkoCbGLwziQrCScPzuci-ImaGiefaTOVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

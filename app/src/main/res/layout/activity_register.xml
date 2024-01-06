@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".Activity.Register">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="128dp"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/hanger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/hanger" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="28dp"
+        android:layout_marginBottom="-20dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/nama"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gayaedit_text"
+                android:fontFamily="@font/poppins_bold"
+                android:inputType="textPersonName"
+                android:autofillHints="name"
+                android:padding="15dp"
+                android:textSize="11sp" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gayaedit_text"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="@string/email_fill"
+                android:autofillHints="emailAddress"
+                android:padding="15dp"
+                android:textSize="11sp" />
+
+            <EditText
+                android:id="@+id/nohp"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gayaedit_text"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="@string/no_hp"
+                android:autofillHints="phone"
+                android:padding="15dp"
+                android:textSize="11sp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gayaedit_text"
+                android:drawableEnd="@drawable/password_icon"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="@string/password_fill"
+                android:autofillHints="password"
+                android:padding="15dp"
+                android:textSize="11sp" />
+
+            <EditText
+                android:id="@+id/repassword"
+                android:layout_width="282dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/gayaedit_text"
+                android:drawableEnd="@drawable/password_icon"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="@string/repass"
+                android:autofillHints="password"
+                android:padding="15dp"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btn_signup"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/outlier"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/sign_up"
+                android:onClick="signup"
+                android:textColor="@color/black"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
+                />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
