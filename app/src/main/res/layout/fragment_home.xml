@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +16,6 @@
             android:layout_height="70dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -25,29 +23,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.024" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="37.6dp"
-            android:layout_height="37.6dp"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/logo"
-            android:src="@drawable/account_icon"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toStartOf="@+id/logo"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="37.6dp"
-            android:layout_height="37.6dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/logo"
-            android:src="@drawable/search_icon"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/logo"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -197,56 +172,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/outlier"
-                android:drawableLeft="@drawable/penjualan_icon"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Penjualan"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewPr" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/outlier"
-                android:drawableLeft="@drawable/pembelian_icon"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Pembelian"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/outlier"
-                android:drawableEnd="@drawable/chart_icon"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Keranjang"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/button"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewPr" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="150dp"
-                android:layout_height="47dp"
-                android:backgroundTint="@color/outlier"
-                android:drawableEnd="@drawable/message_icon"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Chat"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/button2"
-                app:layout_constraintTop_toBottomOf="@+id/button3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

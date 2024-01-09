@@ -11,7 +11,7 @@ public class WanitaModel  implements Serializable {
     public WanitaModel() {
     }
 
-    public WanitaModel(String img_url, String nama) {
+    public WanitaModel(String img_url, String nama, String jenisItem) {
         this.img_url = img_url;
         this.nama = nama;
         this.jenisItem = jenisItem;

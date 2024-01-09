@@ -1,7 +1,8 @@
 package com.example.lovedthingsapp.Adapter;
 
-
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,83 +10,87 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.lovedthingsapp.Domain.PriaDomain;
+import com.example.lovedthingsapp.Category.AtasanPria;
 import com.example.lovedthingsapp.Model.PriaModel;
 import com.example.lovedthingsapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PriaAdaptor extends RecyclerView.Adapter<PriaAdaptor.ViewHolder> {
-    ArrayList<PriaDomain>priaDomains;
 
-    public PriaAdaptor(ArrayList<PriaDomain> priaDomains) {
-        this.priaDomains = priaDomains;
-    }
+    private Context context;
+    private List<PriaModel> list;
 
-    public PriaAdaptor(Context context, List<PriaModel> priaModelList) {
-
+    public PriaAdaptor(Context context, List<PriaModel> list) {
+        this.context = context;
+        this.list = list;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate= LayoutInflater.from(parent.getContext()).inflate(R.layout.pria,parent,false);
-        return new ViewHolder(inflate);
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.pria,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PriaAdaptor.ViewHolder holder, int position) {
-        holder.priaName.setText(priaDomains.get(position).getTitle());
-        String picUrl = "";
-        switch (position){
-            case 0:{
-                picUrl="shirt1";
-                holder.homeLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.background));
-                break;
-            }
-            case 1:{
-                picUrl="celana";
-                holder.homeLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.background));
-                break;
-            }
-            case 2:{
-                picUrl="sepatu";
-                holder.homeLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.background));
-                break;
-            }
-            case 3:{
-                picUrl="bag1";
-                holder.homeLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.background));
-                break;
-            }
-        }
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(picUrl, "drawable",holder.itemView.getContext().getPackageName());
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
-                .into(holder.priaPic);
+        Glide.with(context).load(list.get(position).getImg_url()).into(holder.prImg);
+        holder.prName.setText(list.get(position).getNama());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(context, BawahanWanitaActivity.class);
+//                intent.putExtra("bawahan wanita",list.get(position));
+//                context.startActivity(intent);
+                Intent intent;
+
+                // Menyesuaikan Intent dan data tambahan berdasarkan jenis item
+                switch (list.get(position).getJenisItem()) {
+//                    case "Bawahan Pria":
+//                        intent = new Intent(context, BawahanPriaActivity.class);
+//                        break;
+                    case "Atasan Pria":
+                        intent = new Intent(context, AtasanPria.class);
+                        break;
+//                    case "Sepatu Pria":
+//                        intent = new Intent(context, SepatuPriaActivity.class);
+//                        break;
+//                    case "Aksesoris Pria":
+//                        intent = new Intent(context, AksesorisPriaActivity.class);
+//                        break;
+                    default:
+                        // Tambahkan handling untuk jenis item lain jika diperlukan
+                        return;
+                }
+
+                // Menambahkan data tambahan ke Intent
+                intent.putExtra("jenisItem", list.get(position));
+
+                // Memulai activity baru
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return priaDomains.size();
+        return list.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView priaName;
-        ImageView priaPic;
-        ConstraintLayout homeLayout;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView prImg;
+        TextView prName;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            priaName=itemView.findViewById(R.id.priaName);
-            priaPic=itemView.findViewById(R.id.priaPic);
-            homeLayout=itemView.findViewById(R.id.homeLayout);
+            prImg = itemView.findViewById(R.id.priaPic);
+            prName = itemView.findViewById(R.id.priaName);
         }
     }
 }

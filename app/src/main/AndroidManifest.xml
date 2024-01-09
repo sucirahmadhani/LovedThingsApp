@@ -15,6 +15,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LovedThingsApp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".Activity.MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".Category.AksesorisPria"
+            android:exported="false" />
+        <activity
+            android:name=".Category.AksesorisWanita"
+            android:exported="false" />
+        <activity
+            android:name=".Category.TasWanita"
+            android:exported="false" />
+        <activity
+            android:name=".Category.TasPria"
+            android:exported="false" />
+        <activity
+            android:name=".Category.SepatuWanita"
+            android:exported="false" />
+        <activity
+            android:name=".Category.SepatuPria"
+            android:exported="false" />
+        <activity
+            android:name=".Category.BawahanPria"
+            android:exported="false" />
+        <activity
+            android:name=".Category.BawahanWanita"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Cart"
+            android:exported="false" />
+        <activity
+            android:name=".Category.AtasanWanita"
+            android:exported="false" />
         <activity
             android:name=".Activity.Detailed"
             android:exported="false" />
@@ -34,9 +68,6 @@
             android:name=".Activity.Sell"
             android:exported="false" />
         <activity
-            android:name=".Activity.Home"
-            android:exported="false" />
-        <activity
             android:name=".Activity.Login"
             android:exported="false" />
         <activity
@@ -51,6 +82,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"
