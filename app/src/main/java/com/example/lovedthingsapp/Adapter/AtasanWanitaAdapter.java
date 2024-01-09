@@ -80,7 +80,4 @@ public class AtasanWanitaAdapter extends RecyclerView.Adapter<AtasanWanitaAdapte
             });
         }
     }
-
-    public static class AksesorisWanitaAdapter {
-    }
 }

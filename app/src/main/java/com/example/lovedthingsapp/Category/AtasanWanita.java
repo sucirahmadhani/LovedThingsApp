@@ -22,8 +22,8 @@ public class AtasanWanita extends AppCompatActivity {
 
     ArrayList<Product> recycleViewHolder;
     RecyclerView recyclerViewAtasanWanita;
-    AtasanWanitaAdapter atasanWanitaAdapter;
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    AtasanWanitaAdapter atasanWanitaAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

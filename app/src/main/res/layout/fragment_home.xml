@@ -98,6 +98,7 @@
                 android:backgroundTint="@color/outlier"
                 android:fontFamily="@font/poppins_bold"
                 android:text="Jual"
+                android:onClick="jual"
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"

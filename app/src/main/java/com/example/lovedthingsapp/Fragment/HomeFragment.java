@@ -1,17 +1,21 @@
 package com.example.lovedthingsapp.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lovedthingsapp.Activity.Search;
+import com.example.lovedthingsapp.Activity.Sell;
 import com.example.lovedthingsapp.Adapter.PriaAdaptor;
 import com.example.lovedthingsapp.Adapter.WanitaAdaptor;
 import com.example.lovedthingsapp.Model.PriaModel;
@@ -31,16 +35,15 @@ public class HomeFragment extends Fragment {
     ProgressDialog progressDialog;
     RecyclerView priaRecyclerview,wanitaRecyclerview;
 
-    //Pria recyclerview
     PriaAdaptor priaAdaptor;
     List<PriaModel> priaModelList;
 
-    //Wanita recyclerview
     WanitaAdaptor wanitaAdaptor;
     List<WanitaModel> wanitaModelList;
 
-    //FireStore
     FirebaseFirestore firestore;
+
+    Button btnJual, btnBeli;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -49,11 +52,13 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         progressDialog = new ProgressDialog(getActivity());
         priaRecyclerview = root.findViewById(R.id.recyclerViewPr);
         wanitaRecyclerview = root.findViewById(R.id.recyclerViewWa);
+        btnBeli = root.findViewById(R.id.btn_beli);
+        btnJual = root.findViewById(R.id.btn_jual);
 
 
         firestore = FirebaseFirestore.getInstance();
@@ -63,7 +68,7 @@ public class HomeFragment extends Fragment {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        //Pria
+
         priaRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         priaModelList = new ArrayList<>();
         priaAdaptor = new PriaAdaptor(getContext(), priaModelList);
@@ -111,6 +116,25 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
+        btnJual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Sell.class);
+                startActivity(intent);
+            }
+        });
+
+        btnBeli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Search.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
+
 }
+
+
