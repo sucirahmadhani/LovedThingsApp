@@ -22,6 +22,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:onClick="back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_back" />
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:onClick="search"
         app:layout_constraintEnd_toStartOf="@+id/cart"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/search_icon" />
@@ -255,5 +257,17 @@
         android:fontFamily="@font/poppins_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/deskripsi" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

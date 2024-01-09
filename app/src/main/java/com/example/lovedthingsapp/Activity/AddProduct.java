@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -60,6 +61,7 @@ public class AddProduct extends AppCompatActivity {
 
 
     EditText nama, ukuran, harga, deskripsi;
+    ProgressBar progressBar;
 
     ArrayList<String> arrayListCategory;
     ArrayAdapter<String> arrayAdapterCategory;
@@ -76,6 +78,7 @@ public class AddProduct extends AppCompatActivity {
         deskripsi = findViewById(R.id.deskripsi);
         fotoView = findViewById(R.id.foto);
         Button addProductButton = findViewById(R.id.btn_simpan);
+        progressBar = findViewById(R.id.progressBar);
 
         firestore = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -94,6 +97,7 @@ public class AddProduct extends AppCompatActivity {
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 UploadImage();
             }
         });
@@ -245,6 +249,7 @@ public class AddProduct extends AppCompatActivity {
         documentReference.set(product, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     DocId = documentReference.getId();
                     documentReference.set(product, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -266,6 +271,7 @@ public class AddProduct extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(AddProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

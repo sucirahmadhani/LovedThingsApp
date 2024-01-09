@@ -13,7 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.lovedthingsapp.Category.AksesorisPria;
 import com.example.lovedthingsapp.Category.AtasanPria;
+import com.example.lovedthingsapp.Category.BawahanPria;
+import com.example.lovedthingsapp.Category.SepatuPria;
+import com.example.lovedthingsapp.Category.TasPria;
 import com.example.lovedthingsapp.Model.PriaModel;
 import com.example.lovedthingsapp.R;
 
@@ -44,25 +48,24 @@ public class PriaAdaptor extends RecyclerView.Adapter<PriaAdaptor.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(context, BawahanWanitaActivity.class);
-//                intent.putExtra("bawahan wanita",list.get(position));
-//                context.startActivity(intent);
                 Intent intent;
 
-                // Menyesuaikan Intent dan data tambahan berdasarkan jenis item
                 switch (list.get(position).getJenisItem()) {
-//                    case "Bawahan Pria":
-//                        intent = new Intent(context, BawahanPriaActivity.class);
-//                        break;
+                    case "Bawahan Pria":
+                        intent = new Intent(context, BawahanPria.class);
+                        break;
                     case "Atasan Pria":
                         intent = new Intent(context, AtasanPria.class);
                         break;
-//                    case "Sepatu Pria":
-//                        intent = new Intent(context, SepatuPriaActivity.class);
-//                        break;
-//                    case "Aksesoris Pria":
-//                        intent = new Intent(context, AksesorisPriaActivity.class);
-//                        break;
+                    case "Sepatu Pria":
+                        intent = new Intent(context, SepatuPria.class);
+                        break;
+                    case "Aksesoris Pria":
+                        intent = new Intent(context, AksesorisPria.class);
+                        break;
+                    case "Tas Pria":
+                        intent = new Intent(context, TasPria.class);
+                        break;
                     default:
                         // Tambahkan handling untuk jenis item lain jika diperlukan
                         return;

@@ -1,16 +1,23 @@
 package com.example.lovedthingsapp.Activity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.example.lovedthingsapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,11 +34,14 @@ public class EditProduct extends AppCompatActivity {
     ImageView imageView;
     TextView kategori;
     EditText namaEditText, ukuranEditText, hargaEditText, deskripsiEditText;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
+
+        progressBar = findViewById(R.id.progressBar);
 
         Intent intent = getIntent();
 
@@ -66,6 +76,8 @@ public class EditProduct extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    progressBar.setVisibility(View.VISIBLE);
+
                     String editedNamaProduk = namaEditText.getText().toString();
                     String editedUkuranProduk = ukuranEditText.getText().toString();
                     String editedHargaProduk = hargaEditText.getText().toString();
@@ -85,7 +97,9 @@ public class EditProduct extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(EditProduct.this, "Update Produk Berhasil", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(EditProduct.this, "Produk berhasil diperbarui", Toast.LENGTH_SHORT).show();
+                                        showNotification("Data Tersimpan", "Produk berhasil diperbarui");
 
                                         Intent detailIntent = new Intent(EditProduct.this, DetailProduct.class);
                                         detailIntent.putExtra("produkID", produkID);
@@ -98,9 +112,12 @@ public class EditProduct extends AppCompatActivity {
                                         startActivity(detailIntent);
                                         finish();
                                     }
+
+
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
+                                        progressBar.setVisibility(View.GONE);
                                         Toast.makeText(EditProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -112,6 +129,32 @@ public class EditProduct extends AppCompatActivity {
 
 
         }
+    }
+    private void showNotification(String title, String content) {
+        int notificationId = 1;
+        String channelId = "my_channel_01";
+        CharSequence channelName = "My Channel";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            channel.setDescription("Deskripsi Channel");
+            channel.enableLights(true);
+            channel.setLightColor(Color.RED);
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500});
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(notificationId, builder.build());
     }
 
 }

@@ -48,11 +48,7 @@ public class WanitaAdaptor extends RecyclerView.Adapter<WanitaAdaptor.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, BawahanWanita.class);
-                intent.putExtra("bawahan wanita",list.get(position));
-                context.startActivity(intent);
-
-
+                Intent intent;
 
                 switch (list.get(position).getJenisItem()) {
                     case "Bawahan Wanita":
