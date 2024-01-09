@@ -68,7 +68,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
                     Product clickedProduct = list.get(getAdapterPosition());
 
                     Intent intent = new Intent(context, DetailProduct.class);
-                    intent.putExtra("productId", clickedProduct.getProdukID());
+                    intent.putExtra("produkID", clickedProduct.getProdukID());
                     intent.putExtra("namaProduk", clickedProduct.getNamaProduk());
                     intent.putExtra("kategoriProduk", clickedProduct.getKategoriProduk());
                     intent.putExtra("ukuranProduk", clickedProduct.getUkuranProduk());

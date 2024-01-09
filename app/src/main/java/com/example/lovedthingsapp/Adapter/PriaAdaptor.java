@@ -1,6 +1,7 @@
 package com.example.lovedthingsapp.Adapter;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.lovedthingsapp.Domain.PriaDomain;
+import com.example.lovedthingsapp.Model.PriaModel;
 import com.example.lovedthingsapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PriaAdaptor extends RecyclerView.Adapter<PriaAdaptor.ViewHolder> {
     ArrayList<PriaDomain>priaDomains;
 
     public PriaAdaptor(ArrayList<PriaDomain> priaDomains) {
         this.priaDomains = priaDomains;
+    }
+
+    public PriaAdaptor(Context context, List<PriaModel> priaModelList) {
+
     }
 
     @NonNull

@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 public class DetailProduct extends AppCompatActivity {
 
-    FirebaseFirestore firestore;
+
     Button delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class DetailProduct extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.foto);
 
         if (intent != null) {
-            intent.getStringExtra("produkId");
+            intent.getStringExtra("produkID");
             String namaProduk = intent.getStringExtra("namaProduk");
             String kategoriProduk = intent.getStringExtra("kategoriProduk");
             String ukuranProduk = intent.getStringExtra("ukuranProduk");
@@ -80,7 +80,7 @@ public class DetailProduct extends AppCompatActivity {
                 String hargaProduk = intent.getStringExtra("hargaProduk");
                 String deskripsiProduk = intent.getStringExtra("deskripsiProduk");
                 String fotoProduk = intent.getStringExtra("fotoProduk");
-                String produkID = intent.getStringExtra("produkId");
+                String produkID = intent.getStringExtra("produkID");
 
                 editIntent.putExtra("namaProduk", namaProduk);
                 editIntent.putExtra("kategoriProduk", kategoriProduk);
@@ -88,7 +88,7 @@ public class DetailProduct extends AppCompatActivity {
                 editIntent.putExtra("hargaProduk", hargaProduk);
                 editIntent.putExtra("deskripsiProduk", deskripsiProduk);
                 editIntent.putExtra("fotoProduk", fotoProduk);
-                editIntent.putExtra("produkId", produkID);
+                editIntent.putExtra("produkID", produkID);
 
                 startActivity(editIntent);
             }
@@ -98,11 +98,12 @@ public class DetailProduct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = getIntent();
+
                 if (intent != null) {
-                    String produkID = intent.getStringExtra("produkId");
+                    String produkID = intent.getStringExtra("produkID");
                     if (produkID != null) {
                         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-                        firestore.collection("products").document(produkID)
+                        firestore.collection("Product").document(produkID)
                                 .delete()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -126,6 +127,10 @@ public class DetailProduct extends AppCompatActivity {
         });
 
 
+    }
+
+    public void back(View view){
+        startActivity(new Intent(DetailProduct.this, Sell.class));
     }
 
 }

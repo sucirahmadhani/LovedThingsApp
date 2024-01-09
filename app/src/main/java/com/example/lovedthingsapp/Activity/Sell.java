@@ -52,7 +52,7 @@ public class Sell extends AppCompatActivity {
             String userId = user.getUid();
 
             firestore.collection("Product")
-                    .whereEqualTo("userId", userId)
+                    .whereEqualTo("currentUserID", userId)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override

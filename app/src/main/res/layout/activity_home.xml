@@ -34,6 +34,8 @@
       app:layout_constraintTop_toTopOf="parent" />
 
   <ImageView
+      android:id="@+id/searchHome"
+      android:onClick="searchHome"
       android:layout_width="37.6dp"
       android:layout_height="37.6dp"
       android:layout_alignParentTop="true"

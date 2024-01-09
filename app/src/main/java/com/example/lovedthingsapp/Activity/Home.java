@@ -28,8 +28,14 @@ public class Home extends AppCompatActivity {
         recyclerViewPria();
     }
     public void penjualan(View view){
+
         startActivity(new Intent(Home.this, Sell.class));
     }
+
+    public void searchHome(View view){
+        startActivity(new Intent(Home.this, Search.class));
+    }
+
     private void recyclerViewWanita() {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerViewCategoryList=findViewById(R.id.recyclerViewWanita);

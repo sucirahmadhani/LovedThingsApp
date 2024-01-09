@@ -162,8 +162,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView8"/>
 
-    <Spinner
-        android:id="@+id/spinnerKategori"
+    <TextView
+        android:id="@+id/kategori"
         android:layout_width="380dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -183,7 +183,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinnerKategori"/>
+        app:layout_constraintTop_toBottomOf="@id/kategori"/>
 
     <EditText
         android:id="@+id/ukuran"

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,9 @@ public class EditProduct extends AppCompatActivity {
 
     Button saveButton;
     ImageView imageView;
+    TextView kategori;
     EditText namaEditText, ukuranEditText, hargaEditText, deskripsiEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,16 +40,18 @@ public class EditProduct extends AppCompatActivity {
         hargaEditText = findViewById(R.id.harga);
         deskripsiEditText = findViewById(R.id.deskripsi);
         imageView = findViewById(R.id.foto);
+        kategori = findViewById(R.id.kategori);
         saveButton = findViewById(R.id.update_button);
 
 
         if (intent != null) {
             String namaProduk = intent.getStringExtra("namaProduk");
+            String kategoriProduk = intent.getStringExtra("kategoriProduk");
             String ukuranProduk = intent.getStringExtra("ukuranProduk");
             String hargaProduk = intent.getStringExtra("hargaProduk");
             String deskripsiProduk = intent.getStringExtra("deskripsiProduk");
             String fotoProduk = intent.getStringExtra("fotoProduk");
-            String produkID = intent.getStringExtra("produkId");
+            String produkID = intent.getStringExtra("produkID");
 
             namaEditText.setText(namaProduk);
             ukuranEditText.setText(ukuranProduk);
@@ -72,9 +77,10 @@ public class EditProduct extends AppCompatActivity {
                     map.put("hargaProduk", editedHargaProduk);
                     map.put("deskripsiProduk", editedDeskripsiProduk);
 
+
                     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
                     if (produkID != null) {
-                        firestore.collection("products").document(produkID)
+                        firestore.collection("Product").document(produkID)
                                 .update(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -82,8 +88,9 @@ public class EditProduct extends AppCompatActivity {
                                         Toast.makeText(EditProduct.this, "Update Produk Berhasil", Toast.LENGTH_SHORT).show();
 
                                         Intent detailIntent = new Intent(EditProduct.this, DetailProduct.class);
-                                        detailIntent.putExtra("productId", produkID);
+                                        detailIntent.putExtra("produkID", produkID);
                                         detailIntent.putExtra("namaProduk", editedNamaProduk);
+                                        detailIntent.putExtra("kategoriProduk", kategoriProduk);
                                         detailIntent.putExtra("ukuranProduk", editedUkuranProduk);
                                         detailIntent.putExtra("hargaProduk", editedHargaProduk);
                                         detailIntent.putExtra("deskripsiProduk", editedDeskripsiProduk);

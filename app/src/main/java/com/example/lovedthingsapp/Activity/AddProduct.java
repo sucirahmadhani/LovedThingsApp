@@ -1,9 +1,14 @@
 package com.example.lovedthingsapp.Activity;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -20,6 +25,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.example.lovedthingsapp.Model.Product;
 import com.example.lovedthingsapp.R;
@@ -191,6 +197,33 @@ public class AddProduct extends AppCompatActivity {
         }
     }
 
+    private void showNotification(){
+        int notificationId = 1;
+        String channelId = "my_channel_01";
+        CharSequence channelName = "My Channel";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle("Data Tersimpan")
+                .setContentText("Produk anda berhasil ditambahkan")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            channel.setDescription("Deskripsi Channel");
+            channel.enableLights(true);
+            channel.setLightColor(Color.RED);
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500});
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(notificationId, builder.build());
+    }
+
     public void addProduct() {
 
         String deskripsiproduk = Objects.requireNonNull(deskripsi.getText()).toString();
@@ -218,7 +251,8 @@ public class AddProduct extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(AddProduct.this, "Produk berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                showNotification();
+
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
