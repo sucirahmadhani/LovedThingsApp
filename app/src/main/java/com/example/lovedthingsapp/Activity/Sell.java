@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lovedthingsapp.Adapter.ViewAdapter;
-import com.example.lovedthingsapp.Fragment.HomeFragment;
 import com.example.lovedthingsapp.Model.Product;
 import com.example.lovedthingsapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,7 +41,6 @@ public class Sell extends AppCompatActivity {
         recyclerViewSell = findViewById(R.id.recyclerViewSell);
 
         GetProduct();
-
 
     }
 
@@ -90,6 +88,6 @@ public class Sell extends AppCompatActivity {
     public void add_product(View view){
         startActivity(new Intent(Sell.this, AddProduct.class));
     }
-    public void back (View view) { startActivity(new Intent(Sell.this, HomeFragment.class));}
+    public void back (View view) { startActivity(new Intent(Sell.this, MainActivity2.class));}
 
 }

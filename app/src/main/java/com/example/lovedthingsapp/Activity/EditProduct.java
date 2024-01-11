@@ -67,6 +67,7 @@ public class EditProduct extends AppCompatActivity {
             ukuranEditText.setText(ukuranProduk);
             hargaEditText.setText(hargaProduk);
             deskripsiEditText.setText(deskripsiProduk);
+            kategori.setText(kategoriProduk);
 
             if (fotoProduk != null) {
                 Picasso.get().load(fotoProduk).into(imageView);

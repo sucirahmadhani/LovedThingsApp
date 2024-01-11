@@ -2,6 +2,7 @@ package com.example.lovedthingsapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,10 +11,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lovedthingsapp.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 public class Detailed extends AppCompatActivity {
 
+    FirebaseFirestore firestore;
     Button add_cart, buy_now;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +28,7 @@ public class Detailed extends AppCompatActivity {
 
         add_cart = findViewById(R.id.add_cart);
         buy_now = findViewById(R.id.buy_now);
+        firestore = FirebaseFirestore.getInstance();
 
         Intent intent = getIntent();
 
@@ -62,6 +69,50 @@ public class Detailed extends AppCompatActivity {
             }
         }
 
+        add_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cartIntent = new Intent(Detailed.this, Cart.class);
+
+                String namaProduk = intent.getStringExtra("namaProduk");
+                String kategoriProduk = intent.getStringExtra("kategoriProduk");
+                String ukuranProduk = intent.getStringExtra("ukuranProduk");
+                String hargaProduk = intent.getStringExtra("hargaProduk");
+                String deskripsiProduk = intent.getStringExtra("deskripsiProduk");
+                String fotoProduk = intent.getStringExtra("fotoProduk");
+                String produkID = intent.getStringExtra("produkID");
+
+                addProductToCart(produkID, namaProduk, kategoriProduk, ukuranProduk, hargaProduk, deskripsiProduk, fotoProduk);
+
+                cartIntent.putExtra("namaProduk", namaProduk);
+                cartIntent.putExtra("kategoriProduk", kategoriProduk);
+                cartIntent.putExtra("ukuranProduk", ukuranProduk);
+                cartIntent.putExtra("hargaProduk", hargaProduk);
+                cartIntent.putExtra("deskripsiProduk", deskripsiProduk);
+                cartIntent.putExtra("fotoProduk", fotoProduk);
+                cartIntent.putExtra("produkID", produkID);
+
+                startActivity(cartIntent);
+            }
+        });
+
+    }
+    private void addProductToCart(String produkID, String namaProduk, String kategoriProduk, String ukuranProduk, String hargaProduk, String deskripsiProduk, String fotoProduk) {
+        DocumentReference productDocument = firestore.collection("Product").document(produkID);
+
+        productDocument.update("addToCart", "yes")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
     public void back(View view){
         finish();

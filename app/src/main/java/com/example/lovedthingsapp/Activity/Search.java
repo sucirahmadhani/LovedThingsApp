@@ -84,8 +84,9 @@ public class Search extends AppCompatActivity {
 
                     }
                 });
+        }
 
-    }
+
     private void performSearch(String query){
         recycleViewHolder.clear();
 

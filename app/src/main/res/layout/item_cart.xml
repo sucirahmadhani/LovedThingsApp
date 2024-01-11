@@ -53,4 +53,19 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/outlier"
+        android:fontFamily="@font/poppins_bold"
+        android:padding="10dp"
+        android:text="Checkout"
+        android:textColor="@color/black" />
+
 </RelativeLayout>

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lovedthingsapp.Activity.Maps;
 import com.example.lovedthingsapp.Activity.Search;
 import com.example.lovedthingsapp.Activity.Sell;
 import com.example.lovedthingsapp.Adapter.PriaAdaptor;
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
 
     FirebaseFirestore firestore;
 
-    Button btnJual, btnBeli;
+    Button btnJual, btnBeli, showMap;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -59,7 +60,7 @@ public class HomeFragment extends Fragment {
         wanitaRecyclerview = root.findViewById(R.id.recyclerViewWa);
         btnBeli = root.findViewById(R.id.btn_beli);
         btnJual = root.findViewById(R.id.btn_jual);
-
+        showMap = root.findViewById(R.id.showMap);
 
         firestore = FirebaseFirestore.getInstance();
 
@@ -128,6 +129,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Search.class);
+                startActivity(intent);
+            }
+        });
+
+        showMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Maps.class);
                 startActivity(intent);
             }
         });

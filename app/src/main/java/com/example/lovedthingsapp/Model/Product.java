@@ -1,10 +1,11 @@
 package com.example.lovedthingsapp.Model;
 
 public class Product {
-    private String NamaProduk, DeskripsiProduk, KategoriProduk, UkuranProduk, HargaProduk, FotoProduk, ProdukID, CurrentUserID;
+    private String NamaProduk, DeskripsiProduk, KategoriProduk, UkuranProduk, HargaProduk, FotoProduk, ProdukID, CurrentUserID, AddToCart;
 
     public Product (){
 
+        this.AddToCart = "no";
     }
 
     public Product(String namaProduk, String deskripsiProduk, String kategoriProduk, String ukuranProduk, String hargaProduk, String fotoProduk, String produkID, String currentUserID) {
@@ -16,6 +17,7 @@ public class Product {
         FotoProduk = fotoProduk;
         ProdukID = produkID;
         CurrentUserID = currentUserID;
+        AddToCart = "no";
     }
 
     public String getNamaProduk() {
